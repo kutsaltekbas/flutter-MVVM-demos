@@ -102,7 +102,7 @@ class LoginView extends StatelessWidget {
       width: context.width * 0.35,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black, elevation: 10),
+              backgroundColor: Color(0xffDB4437), elevation: 10),
           onPressed: () {},
           child: Icon(
             Bootstrap.google,
