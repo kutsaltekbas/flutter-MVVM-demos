@@ -12,8 +12,6 @@ import 'package:icons_plus/icons_plus.dart';
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
-  
-
   @override
   Widget build(BuildContext context) {
     return BaseView<LoginViewModel>(
@@ -44,6 +42,7 @@ class LoginView extends StatelessWidget {
                   passwordTextField(viewmodel, context),
                   SizedBox(height: context.height * 0.07),
                   loginButton(context, viewmodel),
+                  SizedBox(height: context.height * 0.01),
                   forgotPasswordButton(),
                   SizedBox(height: context.height * 0.06),
                   connectWithText(),
@@ -132,7 +131,7 @@ class LoginView extends StatelessWidget {
       child: Text(
         "or connect with",
         style: TextStyle(
-            fontSize: 15, color: Colors.blueGrey, fontStyle: FontStyle.italic),
+            fontSize: 16, color: Colors.blueGrey, fontStyle: FontStyle.italic),
       ),
     );
   }
@@ -145,18 +144,21 @@ class LoginView extends StatelessWidget {
           color: Colors.white,
           fontWeight: FontWeight.bold,
           shadows: [
-            BoxShadow(offset: Offset(-1, 2), blurRadius: 25, color: Colors.grey)
+            BoxShadow(offset: Offset(-1, 2), blurRadius: 15, color: Colors.grey)
           ]),
     );
   }
 
-  TextButton forgotPasswordButton() => TextButton(
-      onPressed: () {},
-      child: Text(
-        LocaleKeys.login_forgotText.tr(),
-        style: TextStyle(
-            fontSize: 12, fontStyle: FontStyle.italic, color: Colors.blueGrey),
-      ));
+  Widget forgotPasswordButton() => GestureDetector(
+        onTap: () {},
+        child: Text(
+          LocaleKeys.login_forgotText.tr(),
+          style: TextStyle(
+              fontSize: 12,
+              fontStyle: FontStyle.italic,
+              color: Colors.blueGrey),
+        ),
+      );
 
   Widget loginButton(BuildContext context, LoginViewModel viewmodel) =>
       SizedBox(
@@ -166,9 +168,7 @@ class LoginView extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 elevation: 10,
                 backgroundColor: ColorSchemaLight.instance.accentGreen),
-            onPressed: () async {
-              
-            },
+            onPressed: () async {},
             child: Text(
               LocaleKeys.login_login.tr(),
               style: TextStyle(
@@ -210,16 +210,23 @@ class LoginView extends StatelessWidget {
         child: Card(
           elevation: 10,
           child: TextField(
+              obscuringCharacter: '*',
+              obscureText: true,
               cursorColor: ColorSchemaLight.instance.accentGreen,
               controller: viewmodel.passwordController,
               decoration: InputDecoration(
+                  suffixIcon: Icon(
+                    Icons.remove_red_eye_outlined,
+                    size: 20,
+                  ),
+                  suffixIconColor: Colors.blueGrey,
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                           color: ColorSchemaLight.instance.accentGreen)),
                   enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.transparent)),
                   prefixIcon: Icon(
-                    Icons.key,
+                    Icons.lock,
                     color: ColorSchemaLight.instance.accentGreen,
                   ),
                   filled: true,
