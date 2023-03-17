@@ -49,6 +49,7 @@ dependencies:
   mobx_codegen: ^2.1.1
   flutter_icons_plus: ^1.0.3
   icons_plus: ^4.0.0
+  dio: ^5.0.2
 
 dev_dependencies:
   flutter_test:
