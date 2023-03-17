@@ -25,6 +25,38 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
     });
   }
 
+  late final _$isSignedInAtom =
+      Atom(name: '_LoginViewModelBase.isSignedIn', context: context);
+
+  @override
+  bool get isSignedIn {
+    _$isSignedInAtom.reportRead();
+    return super.isSignedIn;
+  }
+
+  @override
+  set isSignedIn(bool value) {
+    _$isSignedInAtom.reportWrite(value, super.isSignedIn, () {
+      super.isSignedIn = value;
+    });
+  }
+
+  late final _$isSignedOutAtom =
+      Atom(name: '_LoginViewModelBase.isSignedOut', context: context);
+
+  @override
+  bool get isSignedOut {
+    _$isSignedOutAtom.reportRead();
+    return super.isSignedOut;
+  }
+
+  @override
+  set isSignedOut(bool value) {
+    _$isSignedOutAtom.reportWrite(value, super.isSignedOut, () {
+      super.isSignedOut = value;
+    });
+  }
+
   late final _$_LoginViewModelBaseActionController =
       ActionController(name: '_LoginViewModelBase', context: context);
 
@@ -42,7 +74,9 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
   @override
   String toString() {
     return '''
-isLoading: ${isLoading}
+isLoading: ${isLoading},
+isSignedIn: ${isSignedIn},
+isSignedOut: ${isSignedOut}
     ''';
   }
 }

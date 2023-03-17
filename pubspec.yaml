@@ -50,6 +50,8 @@ dependencies:
   flutter_icons_plus: ^1.0.3
   icons_plus: ^4.0.0
   dio: ^5.0.2
+  firebase_core: ^2.8.0
+  firebase_auth: ^4.3.0
 
 dev_dependencies:
   flutter_test:

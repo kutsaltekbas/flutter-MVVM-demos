@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:parolla_game_mvvm/core/constants/app/app_constants.dart';
@@ -6,6 +7,7 @@ import 'package:parolla_game_mvvm/view/authenticate/login/view/login_view.dart';
 import 'package:provider/provider.dart';
 
 import 'core/init/lang/language_manager.dart';
+import 'firebase_options.dart';
 
 Future<void> main(List<String> args) async {
   await _init();
@@ -20,8 +22,12 @@ Future<void> main(List<String> args) async {
 }
 
 Future<void> _init() async {
+  
   await WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
 }
 
 class MyApp extends StatelessWidget {

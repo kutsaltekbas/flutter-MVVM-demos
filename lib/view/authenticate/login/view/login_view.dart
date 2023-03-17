@@ -4,12 +4,15 @@ import 'package:parolla_game_mvvm/core/base/view/base_view.dart';
 import 'package:parolla_game_mvvm/core/init/lang/language_manager.dart';
 import 'package:parolla_game_mvvm/core/init/lang/locale_keys.g.dart';
 import 'package:parolla_game_mvvm/core/init/theme/light/color_scheme_light.dart';
+import 'package:parolla_game_mvvm/view/authenticate/login/view/homepage_view.dart';
 import '../viewmodel/login_view_model.dart';
 import 'package:parolla_game_mvvm/core/extension/context_extension.dart';
 import 'package:icons_plus/icons_plus.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +43,7 @@ class LoginView extends StatelessWidget {
                   SizedBox(height: context.height * 0.05),
                   passwordTextField(viewmodel, context),
                   SizedBox(height: context.height * 0.07),
-                  loginButton(context),
+                  loginButton(context, viewmodel),
                   forgotPasswordButton(),
                   SizedBox(height: context.height * 0.06),
                   connectWithText(),
@@ -155,14 +158,17 @@ class LoginView extends StatelessWidget {
             fontSize: 12, fontStyle: FontStyle.italic, color: Colors.blueGrey),
       ));
 
-  Widget loginButton(BuildContext context) => SizedBox(
+  Widget loginButton(BuildContext context, LoginViewModel viewmodel) =>
+      SizedBox(
         width: context.width,
         height: context.height * 0.07,
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
                 elevation: 10,
                 backgroundColor: ColorSchemaLight.instance.accentGreen),
-            onPressed: () {},
+            onPressed: () async {
+              
+            },
             child: Text(
               LocaleKeys.login_login.tr(),
               style: TextStyle(
