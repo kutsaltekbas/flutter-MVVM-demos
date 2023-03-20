@@ -57,6 +57,14 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
     });
   }
 
+  late final _$signInAsyncAction =
+      AsyncAction('_LoginViewModelBase.signIn', context: context);
+
+  @override
+  Future<void> signIn(BuildContext context) {
+    return _$signInAsyncAction.run(() => super.signIn(context));
+  }
+
   late final _$_LoginViewModelBaseActionController =
       ActionController(name: '_LoginViewModelBase', context: context);
 

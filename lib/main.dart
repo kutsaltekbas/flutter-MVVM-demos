@@ -7,7 +7,6 @@ import 'package:parolla_game_mvvm/view/authenticate/login/view/login_view.dart';
 import 'package:provider/provider.dart';
 
 import 'core/init/lang/language_manager.dart';
-import 'firebase_options.dart';
 
 Future<void> main(List<String> args) async {
   await _init();
@@ -25,9 +24,7 @@ Future<void> _init() async {
   
   await WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+  
 }
 
 class MyApp extends StatelessWidget {

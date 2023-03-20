@@ -4,7 +4,6 @@ import 'package:parolla_game_mvvm/core/base/view/base_view.dart';
 import 'package:parolla_game_mvvm/core/init/lang/language_manager.dart';
 import 'package:parolla_game_mvvm/core/init/lang/locale_keys.g.dart';
 import 'package:parolla_game_mvvm/core/init/theme/light/color_scheme_light.dart';
-import 'package:parolla_game_mvvm/view/authenticate/login/view/homepage_view.dart';
 import '../viewmodel/login_view_model.dart';
 import 'package:parolla_game_mvvm/core/extension/context_extension.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -168,7 +167,9 @@ class LoginView extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 elevation: 10,
                 backgroundColor: ColorSchemaLight.instance.accentGreen),
-            onPressed: () async {},
+            onPressed: () async {
+              await viewmodel.signIn(context);
+            },
             child: Text(
               LocaleKeys.login_login.tr(),
               style: TextStyle(

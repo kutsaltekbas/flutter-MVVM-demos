@@ -1,7 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:parolla_game_mvvm/core/base/model/base_view_model.dart';
-import 'package:parolla_game_mvvm/view/authenticate/login/service/firebase_service.dart';
+import 'package:parolla_game_mvvm/view/home/view/home_view.dart';
 part 'login_view_model.g.dart';
 
 class LoginViewModel = _LoginViewModelBase with _$LoginViewModel;
@@ -16,8 +17,27 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
   bool isSignedIn = false;
   @observable
   bool isSignedOut = false;
-  
-  
+  @action
+  Future<void> signIn(BuildContext context) async {
+    final dio = Dio();
+    var response = await dio.post(
+        "https://online-test.cimsa.com.tr/service/account/v1/Login",
+        data: {
+          "email": "${emailController.text}",
+          "password": "${passwordController.text}"
+        },
+        options: Options(headers: {"language": "T"}));
+    if (response.data["status"] == true) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeView(
+              userId: response.data["data"]["id"].toString(),
+            ),
+          ));
+    }
+  }
+
   @override
   void setContext(BuildContext context) => viewModelContext = context;
   @override
@@ -33,7 +53,7 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
 //     changeIsLoading();
 //     await FirebaseServices.instance.loginFirebase(email, password,);
 //     if(FirebaseServices.instance.userSignIn){
-//       isSignedIn = true;   
+//       isSignedIn = true;
 //   }
 //     changeIsLoading();
 // }
