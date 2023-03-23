@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:parolla_game_mvvm/core/base/model/base_view_model.dart';
+import 'package:parolla_game_mvvm/core/constants/enums/locale_keys_enum.dart';
+import 'package:parolla_game_mvvm/core/init/cache/locale_manager.dart';
 import 'package:parolla_game_mvvm/view/home/view/home_view.dart';
 part 'login_view_model.g.dart';
 
@@ -17,8 +19,11 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
   bool isSignedIn = false;
   @observable
   bool isSignedOut = false;
+
+  @observable
+  String userId = "";
   @action
-  Future<void> signIn(BuildContext context) async {
+  Future<void> signIn() async {
     final dio = Dio();
     var response = await dio.post(
         "https://online-test.cimsa.com.tr/service/account/v1/Login",
@@ -28,8 +33,10 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
         },
         options: Options(headers: {"language": "T"}));
     if (response.data["status"] == true) {
-      Navigator.pushReplacement(
-          context,
+      userId = response.data["data"]["id"].toString();
+      print(response.toString());
+       Navigator.pushReplacement(
+          viewModelContext,
           MaterialPageRoute(
             builder: (context) => HomeView(
               userId: response.data["data"]["id"].toString(),
@@ -41,7 +48,8 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) => viewModelContext = context;
   @override
-  void init() {}
+  void init() {
+  }
 
   @action
   void changeIsLoading() {

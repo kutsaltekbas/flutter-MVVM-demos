@@ -57,12 +57,28 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
     });
   }
 
+  late final _$userIdAtom =
+      Atom(name: '_LoginViewModelBase.userId', context: context);
+
+  @override
+  String get userId {
+    _$userIdAtom.reportRead();
+    return super.userId;
+  }
+
+  @override
+  set userId(String value) {
+    _$userIdAtom.reportWrite(value, super.userId, () {
+      super.userId = value;
+    });
+  }
+
   late final _$signInAsyncAction =
       AsyncAction('_LoginViewModelBase.signIn', context: context);
 
   @override
-  Future<void> signIn(BuildContext context) {
-    return _$signInAsyncAction.run(() => super.signIn(context));
+  Future<void> signIn() {
+    return _$signInAsyncAction.run(() => super.signIn());
   }
 
   late final _$_LoginViewModelBaseActionController =
@@ -84,7 +100,8 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
     return '''
 isLoading: ${isLoading},
 isSignedIn: ${isSignedIn},
-isSignedOut: ${isSignedOut}
+isSignedOut: ${isSignedOut},
+userId: ${userId}
     ''';
   }
 }

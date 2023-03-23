@@ -37,7 +37,7 @@ class LocaleManager{
   }
 
   String getStringValue(PreferencesKeys key) => _preferences?.getString(key.toString()) ?? '';
-  bool getBoolValue(PreferencesKeys key) => _preferences!.getBool(key.toString()) ?? false;
+  bool getBoolValue(PreferencesKeys key) => _preferences?.getBool(key.toString()) ?? false;
 
 
 }

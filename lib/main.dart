@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:parolla_game_mvvm/core/constants/app/app_constants.dart';
 import 'package:parolla_game_mvvm/core/init/notifier/application_provider.dart';
 import 'package:parolla_game_mvvm/view/authenticate/login/view/login_view.dart';
+import 'package:parolla_game_mvvm/view/splash%20screen/view/splash_screen_view.dart';
 import 'package:provider/provider.dart';
 
 import 'core/init/lang/language_manager.dart';
@@ -21,10 +22,8 @@ Future<void> main(List<String> args) async {
 }
 
 Future<void> _init() async {
-  
   await WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  
 }
 
 class MyApp extends StatelessWidget {
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      home: LoginView(),
+      home: SplashScreenView(),
     );
   }
 }
