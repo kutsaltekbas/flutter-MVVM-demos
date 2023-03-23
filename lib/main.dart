@@ -22,7 +22,7 @@ Future<void> main(List<String> args) async {
 }
 
 Future<void> _init() async {
-  await WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 }
 

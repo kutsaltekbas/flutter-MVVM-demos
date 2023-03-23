@@ -34,8 +34,10 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
         options: Options(headers: {"language": "T"}));
     if (response.data["status"] == true) {
       userId = response.data["data"]["id"].toString();
+      await LocaleManager.instance
+          .setStringValue(PreferencesKeys.TOKEN, userId);
       print(response.toString());
-       Navigator.pushReplacement(
+      Navigator.pushReplacement(
           viewModelContext,
           MaterialPageRoute(
             builder: (context) => HomeView(
@@ -48,8 +50,7 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
   @override
   void setContext(BuildContext context) => viewModelContext = context;
   @override
-  void init() {
-  }
+  void init() {}
 
   @action
   void changeIsLoading() {

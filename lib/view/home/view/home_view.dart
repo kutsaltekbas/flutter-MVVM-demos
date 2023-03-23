@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:parolla_game_mvvm/core/constants/enums/locale_keys_enum.dart';
 import 'package:parolla_game_mvvm/core/extension/context_extension.dart';
+import 'package:parolla_game_mvvm/core/init/cache/locale_manager.dart';
 import 'package:parolla_game_mvvm/view/home/model/comment_model.dart';
 import '../../../core/base/view/base_view.dart';
 import '../viewmodel/home_view_model.dart';
@@ -205,7 +207,14 @@ class HomeView extends StatelessWidget {
           );
         },
       ),
-      actions: <Widget>[IconButton(onPressed: () {}, icon: Icon(Icons.list))],
+      actions: <Widget>[
+        IconButton(
+            onPressed: () async {
+              await LocaleManager.instance
+                  .setStringValue(PreferencesKeys.TOKEN, '');
+            },
+            icon: Icon(Icons.list))
+      ],
     );
   }
 

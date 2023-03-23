@@ -19,7 +19,7 @@ abstract class _SplashScreenViewmodelBase with Store, BaseViewModel {
   void setContext(BuildContext context) => viewModelContext = context;
   @override
   Future<void> init() async {
-    pushView();
+    await pushView();
   }
 
   @action
@@ -29,20 +29,17 @@ abstract class _SplashScreenViewmodelBase with Store, BaseViewModel {
 
   @action
   Future<void> pushView() async {
-    await Future.delayed(Duration(seconds: 3));
-    if (LocaleManager.instance.getBoolValue(PreferencesKeys.TOKEN) == true) {
+    print(LocaleManager.instance.getStringValue(PreferencesKeys.TOKEN));
+    await Future.delayed(Duration(seconds: 1));
+    if (LocaleManager.instance.getStringValue(PreferencesKeys.TOKEN) != '') {
+      print(LocaleManager.instance.getStringValue(PreferencesKeys.TOKEN));
       Navigator.pushReplacement(
           viewModelContext,
           MaterialPageRoute(
               builder: (viewModelContext) => HomeView(
                   userId: LocaleManager.instance
                       .getStringValue(PreferencesKeys.TOKEN))));
-    } else if (LocaleManager.instance.getBoolValue(PreferencesKeys.TOKEN) ==
-        false) {
-      Navigator.pushReplacement(viewModelContext,
-          MaterialPageRoute(builder: (viewModelContext) => LoginView()));
     } else {
-      await LocaleManager.instance.setBoolValue(PreferencesKeys.TOKEN, false);
       Navigator.pushReplacement(viewModelContext,
           MaterialPageRoute(builder: (viewModelContext) => LoginView()));
     }
