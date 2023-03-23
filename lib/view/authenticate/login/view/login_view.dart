@@ -37,7 +37,12 @@ class LoginView extends StatelessWidget {
                   SizedBox(
                     height: context.height * 0.1,
                   ),
-                  welcomeText(),
+                  Row(
+                    children: [
+                      welcomeText(),
+                      dropdown(viewmodel)
+                    ],
+                  ),
                   SizedBox(height: context.height * 0.05),
                   emailTextField(viewmodel, context),
                   SizedBox(height: context.height * 0.05),
@@ -60,6 +65,14 @@ class LoginView extends StatelessWidget {
       },
     );
   }
+
+  DropdownButton<Object?> dropdown(LoginViewModel viewModel) => 
+  DropdownButton<String>(
+    items: viewModel.loginDropdownItems.map<DropdownMenuItem<String>>((String value){
+      return DropdownMenuItem<String>(value: value,child: Text(value.toString()));
+    }).toList(), onChanged:((value) {
+      
+    } ));
 
   Row signUp(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.center,

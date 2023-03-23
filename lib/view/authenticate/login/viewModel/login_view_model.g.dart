@@ -73,6 +73,22 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
     });
   }
 
+  late final _$loginDropdownItemsAtom =
+      Atom(name: '_LoginViewModelBase.loginDropdownItems', context: context);
+
+  @override
+  List<String> get loginDropdownItems {
+    _$loginDropdownItemsAtom.reportRead();
+    return super.loginDropdownItems;
+  }
+
+  @override
+  set loginDropdownItems(List<String> value) {
+    _$loginDropdownItemsAtom.reportWrite(value, super.loginDropdownItems, () {
+      super.loginDropdownItems = value;
+    });
+  }
+
   late final _$signInAsyncAction =
       AsyncAction('_LoginViewModelBase.signIn', context: context);
 
@@ -101,7 +117,8 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
 isLoading: ${isLoading},
 isSignedIn: ${isSignedIn},
 isSignedOut: ${isSignedOut},
-userId: ${userId}
+userId: ${userId},
+loginDropdownItems: ${loginDropdownItems}
     ''';
   }
 }

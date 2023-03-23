@@ -57,6 +57,9 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
     isLoading = !isLoading;
   }
 
+  @observable
+  List<String> loginDropdownItems = ["türkiyelice", "english"];
+
 //   @action
 //   Future<void> signIn(String email,String password) async {
 //     changeIsLoading();
