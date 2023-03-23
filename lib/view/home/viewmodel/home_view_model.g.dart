@@ -169,6 +169,22 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  late final _$callbackVariableAtom =
+      Atom(name: '_HomeViewModelBase.callbackVariable', context: context);
+
+  @override
+  int get callbackVariable {
+    _$callbackVariableAtom.reportRead();
+    return super.callbackVariable;
+  }
+
+  @override
+  set callbackVariable(int value) {
+    _$callbackVariableAtom.reportWrite(value, super.callbackVariable, () {
+      super.callbackVariable = value;
+    });
+  }
+
   late final _$filterPostsAsyncAction =
       AsyncAction('_HomeViewModelBase.filterPosts', context: context);
 
@@ -246,6 +262,28 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
   }
 
   @override
+  void pushCallBackPage() {
+    final _$actionInfo = _$_HomeViewModelBaseActionController.startAction(
+        name: '_HomeViewModelBase.pushCallBackPage');
+    try {
+      return super.pushCallBackPage();
+    } finally {
+      _$_HomeViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void callbackFunc() {
+    final _$actionInfo = _$_HomeViewModelBaseActionController.startAction(
+        name: '_HomeViewModelBase.callbackFunc');
+    try {
+      return super.callbackFunc();
+    } finally {
+      _$_HomeViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 jsonString: ${jsonString},
@@ -257,7 +295,8 @@ dropDownIndex: ${dropDownIndex},
 postIndex: ${postIndex},
 filteredCommentList: ${filteredCommentList},
 filteredPostList: ${filteredPostList},
-dropDownItems: ${dropDownItems}
+dropDownItems: ${dropDownItems},
+callbackVariable: ${callbackVariable}
     ''';
   }
 }

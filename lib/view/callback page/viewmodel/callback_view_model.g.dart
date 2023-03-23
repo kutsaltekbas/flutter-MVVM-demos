@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'onboard_view_model.dart';
+part of 'callback_view_model.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'onboard_view_model.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$OnBoardViewModel on _OnBoardViewBase, Store {
+mixin _$CallBackViewModel on _CallBackViewModelBase, Store {
   late final _$isLoadingAtom =
-      Atom(name: '_OnBoardViewBase.isLoading', context: context);
+      Atom(name: '_CallBackViewModelBase.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -25,17 +25,17 @@ mixin _$OnBoardViewModel on _OnBoardViewBase, Store {
     });
   }
 
-  late final _$_OnBoardViewBaseActionController =
-      ActionController(name: '_OnBoardViewBase', context: context);
+  late final _$_CallBackViewModelBaseActionController =
+      ActionController(name: '_CallBackViewModelBase', context: context);
 
   @override
   void changeIsLoading() {
-    final _$actionInfo = _$_OnBoardViewBaseActionController.startAction(
-        name: '_OnBoardViewBase.changeIsLoading');
+    final _$actionInfo = _$_CallBackViewModelBaseActionController.startAction(
+        name: '_CallBackViewModelBase.changeIsLoading');
     try {
       return super.changeIsLoading();
     } finally {
-      _$_OnBoardViewBaseActionController.endAction(_$actionInfo);
+      _$_CallBackViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 

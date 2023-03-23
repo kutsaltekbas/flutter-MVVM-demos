@@ -22,7 +22,7 @@ class HomeView extends StatelessWidget {
       onPageBuilder: (context, viewmodel) {
         return Scaffold(
             backgroundColor: Colors.grey.shade400,
-            appBar: myAppBar(),
+            appBar: myAppBar(viewmodel),
             body: Observer(builder: (_) {
               return viewmodel.isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -187,7 +187,7 @@ class HomeView extends StatelessWidget {
   //   );
   // }
 
-  AppBar myAppBar() {
+  AppBar myAppBar(HomeViewModel viewModel) {
     return AppBar(
       automaticallyImplyLeading: false,
       leading: Builder(
@@ -196,13 +196,15 @@ class HomeView extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: CircleAvatar(
               backgroundColor: Colors.blue,
-              child: Text(
-                userId,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
+              child: Observer(builder: (_) {
+                return Text(
+                  viewModel.callbackVariable.toString(),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                );
+              }),
             ),
           );
         },
@@ -213,7 +215,10 @@ class HomeView extends StatelessWidget {
               await LocaleManager.instance
                   .setStringValue(PreferencesKeys.TOKEN, '');
             },
-            icon: Icon(Icons.list))
+            icon: Icon(Icons.list)),
+        IconButton(
+            onPressed: viewModel.pushCallBackPage,
+            icon: Icon(Icons.arrow_forward_ios)),
       ],
     );
   }

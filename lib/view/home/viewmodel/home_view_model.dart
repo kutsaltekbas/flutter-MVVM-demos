@@ -9,6 +9,7 @@ import 'package:parolla_game_mvvm/core/extension/context_extension.dart';
 import 'package:parolla_game_mvvm/view/home/model/user_model.dart';
 
 import '../../../core/base/model/base_view_model.dart';
+import '../../callback page/view/callback_view.dart';
 import '../model/comment_model.dart';
 import '../model/post_model.dart';
 part 'home_view_model.g.dart';
@@ -135,5 +136,18 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
       filteredCommentList = commentList;
     }
     // changeIsLoading();
+  }
+
+  @action
+  void pushCallBackPage(){
+    Navigator.push(viewModelContext, MaterialPageRoute(builder: (viewModelContext)=>CallBackView(callbackFunc: callbackFunc,)));
+  }
+
+  @observable
+  int callbackVariable = 0;
+
+  @action
+  void callbackFunc(){
+    callbackVariable++;
   }
 }
