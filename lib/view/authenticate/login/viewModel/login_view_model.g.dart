@@ -77,13 +77,13 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
       Atom(name: '_LoginViewModelBase.loginDropdownItems', context: context);
 
   @override
-  List<String> get loginDropdownItems {
+  List<DropdownMenuItem<Locale>> get loginDropdownItems {
     _$loginDropdownItemsAtom.reportRead();
     return super.loginDropdownItems;
   }
 
   @override
-  set loginDropdownItems(List<String> value) {
+  set loginDropdownItems(List<DropdownMenuItem<Locale>> value) {
     _$loginDropdownItemsAtom.reportWrite(value, super.loginDropdownItems, () {
       super.loginDropdownItems = value;
     });

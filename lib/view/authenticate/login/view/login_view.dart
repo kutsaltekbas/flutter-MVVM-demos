@@ -39,8 +39,11 @@ class LoginView extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      welcomeText(),
-                      dropdown(viewmodel)
+                      welcomeText(context),
+                      SizedBox(
+                        width: context.width * 0.2,
+                      ),
+                      dropdown(viewmodel, context)
                     ],
                   ),
                   SizedBox(height: context.height * 0.05),
@@ -66,13 +69,22 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  DropdownButton<Object?> dropdown(LoginViewModel viewModel) => 
-  DropdownButton<String>(
-    items: viewModel.loginDropdownItems.map<DropdownMenuItem<String>>((String value){
-      return DropdownMenuItem<String>(value: value,child: Text(value.toString()));
-    }).toList(), onChanged:((value) {
-      
-    } ));
+  DropdownButton<Object?> dropdown(
+          LoginViewModel viewModel, BuildContext context) =>
+      DropdownButton<Locale>(
+          icon: Icon(
+            Icons.arrow_drop_down_circle,
+            color: Colors.white,
+          ),
+          elevation: 20,
+          iconSize: 18,
+          dropdownColor: Colors.white,
+          items: viewModel.loginDropdownItems,
+          onChanged: ((value) {
+            if (value != null) {
+              context.setLocale(value);
+            }
+          }));
 
   Row signUp(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -151,16 +163,21 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  Text welcomeText() {
-    return Text(
-      LocaleKeys.splash_welcome.tr(),
-      style: TextStyle(
-          fontSize: 32,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          shadows: [
-            BoxShadow(offset: Offset(-1, 2), blurRadius: 15, color: Colors.grey)
-          ]),
+  Widget welcomeText(BuildContext context) {
+    return Container(
+      width: context.width * 0.4,
+      child: Text(
+        LocaleKeys.splash_welcome.tr(),
+        maxLines: 3,
+        style: TextStyle(
+            fontSize: 32,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            shadows: [
+              BoxShadow(
+                  offset: Offset(-1, 2), blurRadius: 15, color: Colors.grey)
+            ]),
+      ),
     );
   }
 
@@ -183,7 +200,7 @@ class LoginView extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 elevation: 10,
                 backgroundColor: ColorSchemaLight.instance.accentGreen),
-            onPressed: ()  {
+            onPressed: () {
               viewmodel.signIn();
             },
             child: Text(

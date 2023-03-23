@@ -4,6 +4,7 @@ import 'package:mobx/mobx.dart';
 import 'package:parolla_game_mvvm/core/base/model/base_view_model.dart';
 import 'package:parolla_game_mvvm/core/constants/enums/locale_keys_enum.dart';
 import 'package:parolla_game_mvvm/core/init/cache/locale_manager.dart';
+import 'package:parolla_game_mvvm/core/init/lang/language_manager.dart';
 import 'package:parolla_game_mvvm/view/home/view/home_view.dart';
 part 'login_view_model.g.dart';
 
@@ -58,7 +59,7 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
   }
 
   @observable
-  List<String> loginDropdownItems = ["türkiyelice", "english"];
+  var loginDropdownItems = [DropdownMenuItem(child: Text("tr"),value: LanguageManager.instance.trLocale,),DropdownMenuItem(child: Text("en"),value: LanguageManager.instance.enLocale,), ];
 
 //   @action
 //   Future<void> signIn(String email,String password) async {

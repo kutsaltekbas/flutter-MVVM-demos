@@ -21,8 +21,8 @@
         "tab1": "Login",
         "tab2": "SignUp",
         "email": "Email",
-        "password": "Password",
-        "forgotText": "Forgot Password?",
+        "password": "Şifre",
+        "forgotText": "Şifreni mi unuttun hehe?",
         "login": "Login",
         "dontAccount": "Dont have account"
     },
